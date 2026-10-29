@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO -->
+    <title>EdgeVec — Serverless Distributed Vector Search</title>
+    <meta
+      name="description"
+      content="EdgeVec: Semantic search over 50,000 legal cases powered entirely by your browser using WebAssembly AI and serverless CDN architecture. Zero query transmission."
+    />
+    <meta name="keywords" content="vector search, semantic search, edge computing, WebAssembly, privacy, serverless, legal research" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- WASM MIME type hint (needed for Transformers.js in some environments) -->
+    <script>
+      // Allow SharedArrayBuffer for WASM threading if available
+      if (typeof SharedArrayBuffer === "undefined") {
+        console.info("SharedArrayBuffer not available — WASM will run in single-threaded mode.");
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

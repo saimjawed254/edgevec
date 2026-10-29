@@ -1,0 +1,25 @@
+{
+  "name": "edgevec-ui",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "homepage": "https://saimjawed254.github.io/edgevec-ui",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "predeploy": "vite build",
+    "deploy": "gh-pages -d dist"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^4.2.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  }
+}

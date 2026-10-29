@@ -1,0 +1,108 @@
+{
+  "timestamp": "2026-10-28T16:39:31Z",
+  "concurrency_summary": {
+    "concurrency": [
+      10,
+      50,
+      100,
+      250,
+      500,
+      1000
+    ],
+    "edgevec_p95_ms": [
+      807.73,
+      1076.1,
+      810.75,
+      2950.92,
+      5888.5,
+      11024.28
+    ],
+    "tkde_gi_p95_ms": [
+      31.44,
+      157.92,
+      314.58,
+      1510.63,
+      3114.48,
+      7564.35
+    ],
+    "faiss_p95_ms": [
+      33.29,
+      233.89,
+      548.84,
+      2355.71,
+      3409.55,
+      10327.68
+    ],
+    "edgevec_qps": [
+      12.2,
+      38.5,
+      52.0,
+      71.3,
+      82.1,
+      89.1
+    ],
+    "tkde_gi_qps": [
+      263.2,
+      256.1,
+      257.4,
+      134.2,
+      144.4,
+      112.8
+    ],
+    "faiss_qps": [
+      256.5,
+      180.5,
+      157.8,
+      94.2,
+      127.9,
+      86.9
+    ],
+    "server_ram_mb": {
+      "Centralized_FAISS": 1536.0,
+      "Centralized_TKDE_GI": 980.0,
+      "EdgeVec_Server": 0.0
+    }
+  },
+  "accuracy_summary": {
+    "1-Probe (Float32)": {
+      "Recall@1": 96.0,
+      "Recall@5": 96.9,
+      "Recall@10": 96.15,
+      "Avg_Buckets_Fetched": 1.0,
+      "Payload_KB": 425.0
+    },
+    "2-Probe Fixed (Float32)": {
+      "Recall@1": 100.0,
+      "Recall@5": 100.0,
+      "Recall@10": 99.9,
+      "Avg_Buckets_Fetched": 2.0,
+      "Payload_KB": 850.0
+    },
+    "3-Probe Fixed (Float32)": {
+      "Recall@1": 100.0,
+      "Recall@5": 100.0,
+      "Recall@10": 100.0,
+      "Avg_Buckets_Fetched": 3.0,
+      "Payload_KB": 1275.0
+    },
+    "EdgeVec Angular-Gap (Float32)": {
+      "Recall@1": 100.0,
+      "Recall@5": 100.0,
+      "Recall@10": 100.0,
+      "Avg_Buckets_Fetched": 2.83,
+      "Payload_KB": 1204.9
+    },
+    "EdgeVec Angular-Gap (Int8 Quantized)": {
+      "Recall@1": 88.5,
+      "Recall@5": 91.5,
+      "Recall@10": 92.35,
+      "Avg_Buckets_Fetched": 2.83,
+      "Payload_KB": 300.5
+    }
+  },
+  "latency_summary": {
+    "float32_total_ms": 167.8,
+    "int8_total_ms": 114.3,
+    "speedup_factor": 1.47
+  }
+}

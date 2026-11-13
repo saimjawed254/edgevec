@@ -1,7 +1,7 @@
 # EdgeVec: Serverless Distributed Vector Search via Edge-Disaggregated Partitioning
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Paper PDF](https://img.shields.io/badge/IEEE%20Format-7--Page%20Manuscript-00629B.svg)](paper/main.pdf)
+[![Paper PDF](https://img.shields.io/badge/IEEE%20Format-Single--Column%20Manuscript-00629B.svg)](paper/main.pdf)
 [![Runtime](https://img.shields.io/badge/Inference-WASM%20SIMD%20128--bit-00f59b.svg)](#62-stage-1-browser-side-neural-inference-wasm-simd)
 [![Edge Cache](https://img.shields.io/badge/Storage-Fastly%20Anycast%20CDN-38bdf8.svg)](#64-stage-3-stateless-anycast-cdn-edge-caching)
 [![Empirical Suite](https://img.shields.io/badge/Validation-Apache%20JMeter%205.6.3-d97706.svg)](edgevec/benchmark/jmeter_live_results.jtl)
@@ -255,7 +255,7 @@ We conducted extensive socket-level benchmarking recorded in Apache JMeter 5.6.3
 
 ## 8. Publication Paper & Visual Telemetry
 
-The formal academic paper is located in [`paper/main.tex`](paper/main.tex) and compiled into [`paper/main.pdf`](paper/main.pdf) (7 pages, IEEE Computer Society double-column specification).
+The formal academic paper is located in [`paper/main.tex`](paper/main.tex) and compiled into [`paper/main.pdf`](paper/main.pdf) (12 pages, single-column IEEE Transactions layout with 1-inch margins and unclustered publication figures).
 
 ### Embedded Publication Figures
 1. **Fig 1: Architecture Comparison (`paper/figures/fig1_architecture.pdf`):** Monolithic centralized server memory wall vs. EdgeVec disaggregated browser/CDN architecture.

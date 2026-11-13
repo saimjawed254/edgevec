@@ -45,6 +45,24 @@ paper/*.synctex.gz
 paper/*.fdb_latexmk
 paper/*.fls
 paper/*.toc
+*.bak
+*.backup
+
+# Apache JMeter Binaries & Zip Archives
+apache-jmeter-*/
+*.zip
+
+# JMeter Runtime Logs and Raw Result Spills
+*.log
+*.jtl
+edgevec/benchmark/*.jtl
+edgevec/edgevec-data-int8/
+edgevec/benchmark/static_edge_cluster.js
+edgevec/benchmark/jmeter_*.jmx
+
+# Knowledge Graph & Agent Workspaces
+graphify-out/
+.agents/
 
 # Benchmark and Raw Log Spills (Optional)
 *.tmp

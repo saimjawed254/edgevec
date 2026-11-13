@@ -1,108 +1,180 @@
 {
-  "timestamp": "2026-10-28T16:39:31Z",
+  "timestamp": "2026-11-12T17:01:14Z",
+  "dataset": "SCOTUS-5000 LexGLUE (Real 384-D Unit Vectors)",
   "concurrency_summary": {
     "concurrency": [
       10,
+      25,
       50,
       100,
-      250,
+      150,
+      200,
+      300,
       500,
+      750,
       1000
     ],
     "edgevec_p95_ms": [
-      807.73,
-      1076.1,
-      810.75,
-      2950.92,
-      5888.5,
-      11024.28
+      9.0,
+      26.0,
+      100.0,
+      143.0,
+      254.0,
+      380.0,
+      516.0,
+      662.0,
+      1226.0,
+      1952.0
+    ],
+    "edgevec_e2e_p95_ms": [
+      12.3,
+      29.3,
+      103.3,
+      146.3,
+      257.3,
+      383.3,
+      519.3,
+      665.3,
+      1229.3,
+      1955.3
     ],
     "tkde_gi_p95_ms": [
-      31.44,
-      157.92,
-      314.58,
-      1510.63,
-      3114.48,
-      7564.35
+      3.0,
+      10.0,
+      21.0,
+      48.0,
+      94.0,
+      93.0,
+      104.0,
+      197.0,
+      340.0,
+      678.35
     ],
     "faiss_p95_ms": [
-      33.29,
-      233.89,
-      548.84,
-      2355.71,
-      3409.55,
-      10327.68
+      5.0,
+      10.0,
+      20.0,
+      41.0,
+      70.0,
+      97.0,
+      82.0,
+      218.0,
+      375.0,
+      552.0
     ],
     "edgevec_qps": [
-      12.2,
-      38.5,
-      52.0,
-      71.3,
-      82.1,
-      89.1
+      1908.8,
+      1841.1,
+      1566.4,
+      1936.8,
+      1918.8,
+      1752.3,
+      1803.5,
+      1893.9,
+      1403.0,
+      1176.3
     ],
     "tkde_gi_qps": [
-      263.2,
-      256.1,
-      257.4,
-      134.2,
-      144.4,
-      112.8
+      4604.3,
+      4133.4,
+      3867.7,
+      3323.4,
+      2528.7,
+      3073.6,
+      3917.1,
+      3056.1,
+      2618.9,
+      2501.3
     ],
     "faiss_qps": [
-      256.5,
-      180.5,
-      157.8,
-      94.2,
-      127.9,
-      86.9
+      3705.5,
+      3927.0,
+      4179.3,
+      4123.4,
+      3157.4,
+      3363.6,
+      4600.7,
+      3089.8,
+      2599.3,
+      2591.5
+    ],
+    "edgevec_err_pct": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "tkde_err_pct": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "faiss_err_pct": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
     ],
     "server_ram_mb": {
-      "Centralized_FAISS": 1536.0,
-      "Centralized_TKDE_GI": 980.0,
-      "EdgeVec_Server": 0.0
+      "Centralized_IVF_Workers": 467.77,
+      "Centralized_TKDE_GI_Workers": 467.77,
+      "EdgeVec_Vector_Index": 0.0
     }
   },
   "accuracy_summary": {
     "1-Probe (Float32)": {
-      "Recall@1": 96.0,
-      "Recall@5": 96.9,
-      "Recall@10": 96.15,
-      "Avg_Buckets_Fetched": 1.0,
-      "Payload_KB": 425.0
+      "recall_1": 82.0,
+      "recall_5": 55.8,
+      "recall_10": 48.5,
+      "avg_buckets_probed": 1.0,
+      "avg_payload_kb": 531.0
     },
     "2-Probe Fixed (Float32)": {
-      "Recall@1": 100.0,
-      "Recall@5": 100.0,
-      "Recall@10": 99.9,
-      "Avg_Buckets_Fetched": 2.0,
-      "Payload_KB": 850.0
+      "recall_1": 96.0,
+      "recall_5": 71.2,
+      "recall_10": 64.5,
+      "avg_buckets_probed": 2.0,
+      "avg_payload_kb": 1097.9
     },
     "3-Probe Fixed (Float32)": {
-      "Recall@1": 100.0,
-      "Recall@5": 100.0,
-      "Recall@10": 100.0,
-      "Avg_Buckets_Fetched": 3.0,
-      "Payload_KB": 1275.0
+      "recall_1": 98.0,
+      "recall_5": 78.2,
+      "recall_10": 71.5,
+      "avg_buckets_probed": 3.0,
+      "avg_payload_kb": 1641.0
     },
-    "EdgeVec Angular-Gap (Float32)": {
-      "Recall@1": 100.0,
-      "Recall@5": 100.0,
-      "Recall@10": 100.0,
-      "Avg_Buckets_Fetched": 2.83,
-      "Payload_KB": 1204.9
+    "Proposed Adaptive (Float32)": {
+      "recall_1": 94.0,
+      "recall_5": 64.8,
+      "recall_10": 57.6,
+      "avg_buckets_probed": 1.46,
+      "avg_payload_kb": 796.3
     },
-    "EdgeVec Angular-Gap (Int8 Quantized)": {
-      "Recall@1": 88.5,
-      "Recall@5": 91.5,
-      "Recall@10": 92.35,
-      "Avg_Buckets_Fetched": 2.83,
-      "Payload_KB": 300.5
+    "Proposed Adaptive (Int8 Quantized)": {
+      "recall_1": 94.0,
+      "recall_5": 64.8,
+      "recall_10": 57.6,
+      "avg_buckets_probed": 1.46,
+      "avg_payload_kb": 177.5
     }
-  },
-  "latency_summary": {
-    "float32_total_ms": 167.8,
-    "int8_total_ms": 114.3,
-    "speedup_factor": 1.47
   }
 }

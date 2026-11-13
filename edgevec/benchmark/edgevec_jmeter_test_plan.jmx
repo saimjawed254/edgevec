@@ -2,7 +2,7 @@
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
   <hashTree>
     <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="EdgeVec vs TKDE 2026 Concurrency Benchmark" enabled="true">
-      <stringProp name="TestPlan.comments">Formal Concurrency Stress Test: Serverless CDN vs Centralized In-Memory Vector Server</stringProp>
+      <stringProp name="TestPlan.comments">Empirical Socket Benchmark: Disaggregated Static CDN Partitions vs Centralized In-Memory Vector Server</stringProp>
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
@@ -18,69 +18,52 @@
             <stringProp name="Argument.value">8000</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="CDN_HOST" elementType="Argument">
-            <stringProp name="Argument.name">CDN_HOST</stringProp>
-            <stringProp name="Argument.value">raw.githubusercontent.com</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
         </collectionProp>
       </elementProp>
     </TestPlan>
     <hashTree>
       <!-- ========================================================= -->
-      <!-- THREAD GROUP 1: EdgeVec Serverless CDN Benchmark          -->
-      <!-- Simulates 1,000 concurrent edge clients requesting buckets -->
+      <!-- THREAD GROUP 1: EdgeVec Serverless Static CDN Retrieval  -->
       <!-- ========================================================= -->
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="EdgeVec Static CDN Clients (1,000 Users)" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="EdgeVec Static CDN Buckets" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">10</stringProp>
+          <stringProp name="LoopController.loops">${__P(loops, 5)}</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1000</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">30</stringProp>
+        <stringProp name="ThreadGroup.num_threads">${__P(threads, 50)}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">2</stringProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
-        <stringProp name="ThreadGroup.duration"></stringProp>
-        <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP GET Static Bucket from CDN" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="EdgeVec-Static-Bucket-GET" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">${CDN_HOST}</stringProp>
-          <stringProp name="HTTPSampler.protocol">https</stringProp>
-          <stringProp name="HTTPSampler.path">/saimjawed254/edgevec-data/main/bucket_${__Random(0,99)}.json</stringProp>
+          <stringProp name="HTTPSampler.domain">${CENTRAL_HOST}</stringProp>
+          <stringProp name="HTTPSampler.port">${CENTRAL_PORT}</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.path">/edgevec/bucket/${__Random(0,99)}</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
         </HTTPSamplerProxy>
-        <hashTree>
-          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="User Think Time" enabled="true">
-            <stringProp name="ConstantTimer.delay">100</stringProp>
-            <stringProp name="RandomTimer.range">50.0</stringProp>
-          </GaussianRandomTimer>
-          <hashTree/>
-        </hashTree>
+        <hashTree/>
       </hashTree>
 
       <!-- ========================================================= -->
-      <!-- THREAD GROUP 2: TKDE 2026 Geometric Index Server Baseline -->
-      <!-- Transmits 384-dim queries to Centralized In-Memory Server  -->
+      <!-- THREAD GROUP 2: TKDE 2026 Geometric Index Central Server   -->
       <!-- ========================================================= -->
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TKDE 2026 Centralized Server (1,000 Users)" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="TKDE 2026 Centralized Server" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">10</stringProp>
+          <stringProp name="LoopController.loops">${__P(loops, 5)}</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1000</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">30</stringProp>
+        <stringProp name="ThreadGroup.num_threads">${__P(threads, 50)}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">2</stringProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
-        <stringProp name="ThreadGroup.duration"></stringProp>
-        <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
         <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
@@ -92,13 +75,13 @@
           </collectionProp>
         </HeaderManager>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP POST Query to TKDE 2026 Server" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="TKDE-2026-Geometric-POST" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{"query_vector": [0.05, -0.02, 0.08, 0.01, -0.04, 0.03, 0.07, -0.01, 0.06, -0.05, 0.02, 0.04], "top_k": 5, "nprobe": 2}</stringProp>
+                <stringProp name="Argument.value">{"top_k": 5, "nprobe": 2}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
@@ -111,13 +94,7 @@
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
         </HTTPSamplerProxy>
-        <hashTree>
-          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="User Think Time" enabled="true">
-            <stringProp name="ConstantTimer.delay">100</stringProp>
-            <stringProp name="RandomTimer.range">50.0</stringProp>
-          </GaussianRandomTimer>
-          <hashTree/>
-        </hashTree>
+        <hashTree/>
       </hashTree>
 
       <!-- ========================================================= -->
@@ -157,7 +134,7 @@
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">edgevec_jmeter_results.jtl</stringProp>
+        <stringProp name="filename">${__P(jtl_file, jmeter_live_results.jtl)}</stringProp>
       </ResultCollector>
       <hashTree/>
     </hashTree>
